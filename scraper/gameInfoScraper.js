@@ -100,11 +100,45 @@ async function downloadAndProcessGameDataFile (curGame) {
     gameData = newGameData
 
     // TODO: Update build data links to point to local files when available
+    const builds = { win64: {}, macOS: {}, linux64: {}, android: {}, ios: {} }
     buildAndLogFiles.forEach((filename) => {
-      if (filename.toLowerCase().contains(gameData.key.toLowerCase())) {
-        console.log(`\tBuild file: ${filename}`)
+      let fields = path.basename(filename, '.zip').split('-')
+      if (filename.includes('.log')) {
+        fields = path.basename(filename, '.log').split('-')
+      }
+
+      if (fields[0].toLowerCase() === gameData.key.toLowerCase()) {
+        // Determind build version (current, previous, stable)
+        let ver = ''
+        switch (fields[1].toLowerCase()) {
+          case 'current': case 'weekly': ver = 'current'; break
+          case 'prev': case 'previous': ver = 'previous'; break
+          case 'stable': ver = 'stable'; break
+          default: ver = 'other'; break
+        }
+
+        // Is this the actual build or the log file?
+        let type = 'link'
+        if (filename.toLowerCase().endsWith('.log')) { type = 'log' }
+
+        // Which system is this for?
+        switch (fields[2].toLowerCase()) {
+          case 'win64': builds.win64[ver][type] = path.join('game_builds', filename); break
+          case 'macos': builds.macOS[ver][type] = path.join('game_builds', filename); break
+          case 'linux64': builds.linux64[ver][type] = path.join('game_builds', filename); break
+          case 'android': builds.android[ver][type] = path.join('game_builds', filename); break
+          case 'ios': builds.ios[ver][type] = path.join('game_builds', filename); break
+        }
       }
     })
+
+    // Attach the build links
+    if (builds.win64 === {}) { delete builds.win64 }
+    if (builds.macOS === {}) { delete builds.macOS }
+    if (builds.linux64 === {}) { delete builds.linux64 }
+    if (builds.android === {}) { delete builds.android }
+    if (builds.ios === {}) { delete builds.ios }
+    gameData.builds = builds
 
     // Ensure output directory exists and is empty
     const destDir = path.join('public', 'game_info', gameData.key)
