@@ -122,13 +122,12 @@ async function downloadAndProcessGameDataFile (curGame) {
         if (filename.toLowerCase().endsWith('.log')) { type = 'log' }
 
         // Which system is this for?
-        switch (fields[2].toLowerCase()) {
-          case 'win64': builds.win64[ver][type] = path.join('game_builds', filename); break
-          case 'macos': builds.macOS[ver][type] = path.join('game_builds', filename); break
-          case 'linux64': builds.linux64[ver][type] = path.join('game_builds', filename); break
-          case 'android': builds.android[ver][type] = path.join('game_builds', filename); break
-          case 'ios': builds.ios[ver][type] = path.join('game_builds', filename); break
-        }
+        const platform = fields[2].toLowerCase()
+
+        // Build structure
+        if (!builds[platform]) { builds[platform] = {} }
+        if (!builds[platform][ver]) { builds[platform][ver] = {} }
+        builds[platform][ver][type] = path.join('game_builds', filename)
 
         console.log(`\tBuild File: ${filename}`)
       }
