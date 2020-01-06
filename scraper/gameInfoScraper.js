@@ -13,7 +13,10 @@ import { retrieveSVNFile } from './subversionHelpers'
 import gameInfo from './gameList.json'
 
 // Customized list of file data that will be written to the public/game_info folder
-const gameDataList = [];
+const gameDataList = []
+
+// List of all files in the build dir
+const buildAndLogFiles = fs.readdirSync(path.join('public', 'game_builds'));
 
 // Main function as an IIF so that it supports 'async/await'
 (async () => {
@@ -97,6 +100,11 @@ async function downloadAndProcessGameDataFile (curGame) {
     gameData = newGameData
 
     // TODO: Update build data links to point to local files when available
+    buildAndLogFiles.forEach((filename) => {
+      if (filename.toLowerCase().contains(gameData.key.toLowerCase())) {
+        console.log(`\tBuild file: ${filename}`)
+      }
+    })
 
     // Ensure output directory exists and is empty
     const destDir = path.join('public', 'game_info', gameData.key)
