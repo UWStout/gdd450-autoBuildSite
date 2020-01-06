@@ -129,6 +129,8 @@ async function downloadAndProcessGameDataFile (curGame) {
           case 'android': builds.android[ver][type] = path.join('game_builds', filename); break
           case 'ios': builds.ios[ver][type] = path.join('game_builds', filename); break
         }
+
+        console.log(`\tBuild File: ${filename}`)
       }
     })
 
