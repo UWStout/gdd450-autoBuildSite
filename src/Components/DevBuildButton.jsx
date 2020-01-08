@@ -5,6 +5,8 @@ import { Box, ButtonGroup, Button, Grow, Paper, Popper, MenuItem, Divider, MenuL
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import { downloadFile } from './remoteDataHelpers'
+
 const options = ['Download previous build', '#', 'View currrent build log', 'View previous build log']
 
 export default function DevBuildButton (props) {
@@ -20,31 +22,25 @@ export default function DevBuildButton (props) {
 
   const handleClick = () => {
     console.info(`Requested download of current build from ${props.linkCurrent}`)
+    downloadFile(props.linkCurrent)
   }
 
   const handleMenuItemClick = (event, index) => {
     switch (index) {
       case 0:
         console.info(`Requested download of previous build from ${props.linkPrevious}`)
+        downloadFile(props.linkPrevious)
         break
 
       case 2:
-        console.info(`Requested view of current log at ${props.logCurrent}`)
         if (props.logOpenCallback) {
-          console.log('Calling log open callback')
           props.logOpenCallback(props.logCurrent, 'Current Build Log for ' + props.text)
-        } else {
-          console.log('No log open callback')
         }
         break
 
       case 3:
-        console.info(`Requested view of previous log at ${props.logPrevious}`)
         if (props.logOpenCallback) {
-          console.log('Calling log open callback')
           props.logOpenCallback(props.logPrevious, 'Previous Build Log for ' + props.text)
-        } else {
-          console.log('No log open callback')
         }
         break
     }

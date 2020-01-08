@@ -88,3 +88,12 @@ export function useMarkdown (markdownDataURL) {
   // Return the current state of the markdown string
   return MDString
 }
+
+export function downloadFile (href) {
+  const a = document.createElement('a')
+  a.href = href
+  a.download = href.substr(href.lastIndexOf('/') + 1)
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}

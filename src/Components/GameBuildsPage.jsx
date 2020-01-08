@@ -6,6 +6,8 @@ import {
   Dialog, DialogTitle, DialogContent, DialogActions
 } from '@material-ui/core'
 
+import { makeStyles } from '@material-ui/core/styles'
+
 import { LazyLog } from 'react-lazylog'
 
 import GameBuildsList from './GameBuildsList.jsx'
@@ -14,12 +16,22 @@ import PageFooter from './PageFooter.jsx'
 
 import { useJSON } from './remoteDataHelpers'
 
+// This will make the dialog window fill its vertical space and allow the log viewer to be visible
+const useStyles = makeStyles(theme => ({
+  dialogPaper: {
+    minHeight: '90vh',
+    maxHeight: '90vh'
+  }
+}))
+
 // Transition component for the dialog
 const Transition = React.forwardRef(function Transition (props, ref) {
   return <Slide direction="up" timeout={2000} ref={ref} {...props} />
 })
 
 export default function GameBuildsPage (props) {
+  const classes = useStyles()
+
   // Manage the log dialog state
   const [activeLog, setActiveLog] = useState({ URI: '', title: '' })
   const handleClose = () => { setActiveLog({ URI: '', title: '' }) }
@@ -53,7 +65,7 @@ export default function GameBuildsPage (props) {
 
       { /* If there is an active log, show it in a large modal dialog */ }
       { activeLog?.URI !== '' &&
-        makeLogDialog(activeLog.URI, activeLog.title, handleClose)
+        makeLogDialog(activeLog.URI, activeLog.title, handleClose, classes)
       }
     </React.Fragment>
   )
@@ -66,11 +78,12 @@ export default function GameBuildsPage (props) {
  * @param {string} tile title for the dialog.
  * @param {function} handleClose Callback for the dialog close operation.
  */
-function makeLogDialog (logURI, title, handleClose) {
+function makeLogDialog (logURI, title, handleClose, classes) {
   console.log(`Called makeLogDialog(${logURI}, ${title}, ...)`)
   return (
     <Dialog TransitionComponent={Transition} fullWidth={true} maxWidth="lg" open={true}
-      keepMounted onClose={handleClose} aria-labelledby="media-dialog-title">
+      keepMounted onClose={handleClose} aria-labelledby="media-dialog-title"
+      classes={{ paper: classes.dialogPaper }}>
       <DialogTitle id="media-dialog-title">{title}</DialogTitle>
       <DialogContent dividers={true}>
         <LazyLog extraLines={1} enableSearch url={logURI} selectableLines />
