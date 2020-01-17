@@ -90,19 +90,21 @@ export default function GameDevInfoPaper (props) {
                 <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
                   <Grid item xs={6}>
                     <DevBuildButton text="Download Windows Build" icon={<PlatformIcons.WindowsIcon />}
+                      buildTitle={`${props.game.title} Win64 Build`}
                       logOpenCallback={props.logOpenCallback}
                       linkCurrent={props.game?.builds?.win64?.current?.link}
                       linkPrevious={props.game?.builds?.win64?.previous?.link}
-                      logCurrent={props.game?.builds?.win64?.current?.log}
-                      logPrevious={props.game?.builds?.win64?.previous?.log} />
+                      logsCurrent={props.game?.builds?.win64?.current?.log}
+                      logsPrevious={props.game?.builds?.win64?.previous?.log} />
                   </Grid>
                   <Grid item xs={6}>
                     <DevBuildButton text="Download MacOS Build" icon={<PlatformIcons.MacOSIcon />}
+                      buildTitle={`${props.game.title} MacOS Build`}
                       logOpenCallback={props.logOpenCallback}
                       linkCurrent={props.game?.builds?.macos?.current?.link}
                       linkPrevious={props.game?.builds?.macos?.previous?.link}
-                      logCurrent={props.game?.builds?.macos?.current?.log}
-                      logPrevious={props.game?.builds?.macos?.previous?.log} />
+                      logsCurrent={props.game?.builds?.macos?.current?.log}
+                      logsPrevious={props.game?.builds?.macos?.previous?.log} />
                   </Grid>
                 </Grid>
               </Box>
@@ -112,7 +114,9 @@ export default function GameDevInfoPaper (props) {
             {/* Column 2 */}
             <Grid item xs={12} md={3}>
               <Box py={1}>
-                <Sidebar sections={sidebarSections} gameKey={props.game.key} />
+                <Sidebar sections={sidebarSections} gameKey={props.game.key}
+                  engine={props.game.engine} engineVersion={props.game.engineVersion}
+                  buildPlatforms={props.game.buildPlatforms} />
               </Box>
             </Grid>
 

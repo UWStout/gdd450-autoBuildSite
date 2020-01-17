@@ -16,31 +16,29 @@ export default function DevBuildButton (props) {
   const linkStates = [
     props.linkPrevious !== undefined,
     false,
-    props.logCurrent !== undefined,
-    props.logPrevious !== undefined
+    props.logsCurrent !== undefined,
+    props.logsPrevious !== undefined
   ]
 
   const handleClick = () => {
-    console.info(`Requested download of current build from ${props.linkCurrent}`)
     downloadFile(props.linkCurrent)
   }
 
   const handleMenuItemClick = (event, index) => {
     switch (index) {
       case 0:
-        console.info(`Requested download of previous build from ${props.linkPrevious}`)
         downloadFile(props.linkPrevious)
         break
 
       case 2:
         if (props.logOpenCallback) {
-          props.logOpenCallback(props.logCurrent, 'Current Build Log for ' + props.text)
+          props.logOpenCallback(props.logsCurrent, 'Current build Logs for ' + props.buildTitle)
         }
         break
 
       case 3:
         if (props.logOpenCallback) {
-          props.logOpenCallback(props.logPrevious, 'Previous Build Log for ' + props.text)
+          props.logOpenCallback(props.logsPrevious, 'Previous build Logs for ' + props.buildTitle)
         }
         break
     }
@@ -108,10 +106,11 @@ export default function DevBuildButton (props) {
 
 DevBuildButton.propTypes = {
   text: PropTypes.node.isRequired,
+  buildTitle: PropTypes.string,
   linkCurrent: PropTypes.string,
   linkPrevious: PropTypes.string,
-  logCurrent: PropTypes.string,
-  logPrevious: PropTypes.string,
+  logsCurrent: PropTypes.arrayOf(PropTypes.string),
+  logsPrevious: PropTypes.arrayOf(PropTypes.string),
   icon: PropTypes.node,
   logOpenCallback: PropTypes.func
 }

@@ -8,7 +8,7 @@ import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles(theme => ({
   sidebarSection: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
   }
 }))
 

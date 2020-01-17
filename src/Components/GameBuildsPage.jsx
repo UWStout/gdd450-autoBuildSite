@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 
 import {
   Container, CssBaseline, Button, Slide,
-  Dialog, DialogTitle, DialogContent, DialogActions
+  Dialog, DialogTitle, DialogContent, DialogActions,
+  FormControl, Select, MenuItem, InputLabel
 } from '@material-ui/core'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -21,6 +22,13 @@ const useStyles = makeStyles(theme => ({
   dialogPaper: {
     minHeight: '90vh',
     maxHeight: '90vh'
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
   }
 }))
 
@@ -35,7 +43,14 @@ export default function GameBuildsPage (props) {
   // Manage the log dialog state
   const [activeLog, setActiveLog] = useState({ URI: '', title: '' })
   const handleClose = () => { setActiveLog({ URI: '', title: '' }) }
-  const openLog = (newLogURI, newTitle) => { setActiveLog({ URI: newLogURI, title: newTitle }) }
+
+  const [activeLogIndex, setActiveLogIndex] = useState(-1)
+  const updateIndex = (event) => { setActiveLogIndex(event.target.value) }
+
+  const openLog = (newLogURI, newTitle) => {
+    setActiveLogIndex(-1)
+    setActiveLog({ URI: newLogURI, title: newTitle })
+  }
 
   // Retrieve the game list from the root of the server
   const GAME_INFO = useJSON('gameList.json')
@@ -65,29 +80,49 @@ export default function GameBuildsPage (props) {
 
       { /* If there is an active log, show it in a large modal dialog */ }
       { activeLog?.URI !== '' &&
-        makeLogDialog(activeLog.URI, activeLog.title, handleClose, classes)
+        makeLogDialog(activeLog.URI, activeLogIndex, activeLog.title, updateIndex, handleClose, classes)
       }
     </React.Fragment>
   )
 }
 
 /**
- * This function will make a modal dialog to show a log file for the build
+ * This function will make a modal dialog to show log files for the build
  *
- * @param {string} logURI URL where the log data is located.
+ * @param {string[]} logURIs URL where the log data is located.
  * @param {string} tile title for the dialog.
+ * @param {function} changeLog callback to update the state of the current log URI.
  * @param {function} handleClose Callback for the dialog close operation.
+ * @param {object} classes Style classes prepared for this component with useStyles().
  */
-function makeLogDialog (logURI, title, handleClose, classes) {
-  console.log(`Called makeLogDialog(${logURI}, ${title}, ...)`)
+function makeLogDialog (logURIs, index, title, changeLog, handleClose, classes) {
+  const logSelector = (
+    <FormControl className={classes.formControl}>
+      <InputLabel id="log-select-label">Select a Log</InputLabel>
+      <Select labelId="log-select-label" id="log-select"
+        value={logURIs.length === 1 ? 0 : (index === -1 ? '' : index)}
+        className={classes.selectEmpty} onChange={changeLog}>
+        {logURIs.map((logURI, idx) => (
+          <MenuItem key={logURI} value={idx}>{logURI.split('-').pop()}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  )
+
+  if (logURIs.length === 1 && index !== 0) {
+    changeLog({ target: { value: 0 } })
+  }
+
   return (
     <Dialog TransitionComponent={Transition} fullWidth={true} maxWidth="lg" open={true}
       keepMounted onClose={handleClose} aria-labelledby="media-dialog-title"
       classes={{ paper: classes.dialogPaper }}>
       <DialogTitle id="media-dialog-title">{title}</DialogTitle>
       <DialogContent dividers={true}>
-        <LazyLog extraLines={1} enableSearch url={logURI} selectableLines />
-        {/* <Typography>Log for {logURI} titled {title} will go here</Typography> */}
+        {logSelector}
+        { index > -1 && index < logURIs.length &&
+          <LazyLog extraLines={1} enableSearch url={logURIs[index]} selectableLines />
+        }
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">

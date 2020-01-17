@@ -127,7 +127,13 @@ async function downloadAndProcessGameDataFile (curGame) {
         // Build structure
         if (!builds[platform]) { builds[platform] = {} }
         if (!builds[platform][ver]) { builds[platform][ver] = {} }
-        builds[platform][ver][type] = path.join('game_builds', filename)
+
+        if (type === 'log') {
+          if (!builds[platform][ver][type]) { builds[platform][ver][type] = [] }
+          builds[platform][ver][type].push(path.join('game_builds', filename))
+        } else {
+          builds[platform][ver][type] = path.join('game_builds', filename)
+        }
 
         console.log(`\tBuild File: ${filename}`)
       }
@@ -154,7 +160,9 @@ async function downloadAndProcessGameDataFile (curGame) {
       if (!markdownFile) {
         console.error('\tFailed to retrieve game description markdown file')
       } else {
+        /* eslint-disable require-atomic-updates */
         gameData.descriptionMarkdownURI = markdownFile.slice(markdownFile.indexOf('/') + 1)
+        /* eslint-enable require-atomic-updates */
         console.log('\t' + gameData.descriptionMarkdownURI)
       }
     } else {
@@ -169,7 +177,9 @@ async function downloadAndProcessGameDataFile (curGame) {
           console.error('\tFailed to retrieve extra markdown file: ' + gameData.pageExtras[i].key)
           console.error('\t\tURI -> ' + gameData.pageExtras[i].markdownURI)
         } else {
+          /* eslint-disable require-atomic-updates */
           gameData.pageExtras[i].markdownURI = markdownFile.slice(markdownFile.indexOf('/') + 1)
+          /* eslint-enable require-atomic-updates */
           console.log('\t' + gameData.pageExtras[i].markdownURI)
         }
       }
