@@ -100,7 +100,7 @@ async function downloadAndProcessGameDataFile (curGame) {
     gameData = newGameData
 
     // TODO: Update build data links to point to local files when available
-    const builds = { win64: {}, macOS: {}, linux64: {}, android: {}, ios: {} }
+    const builds = { win64: {}, macos: {}, linux64: {}, android: {}, ios: {} }
     buildAndLogFiles.forEach((filename) => {
       let fields = path.basename(filename, '.zip').split('-')
       if (filename.includes('.log')) {
@@ -135,7 +135,7 @@ async function downloadAndProcessGameDataFile (curGame) {
 
     // Attach the build links
     if (builds.win64 === {}) { delete builds.win64 }
-    if (builds.macOS === {}) { delete builds.macOS }
+    if (builds.macos === {}) { delete builds.macos }
     if (builds.linux64 === {}) { delete builds.linux64 }
     if (builds.android === {}) { delete builds.android }
     if (builds.ios === {}) { delete builds.ios }

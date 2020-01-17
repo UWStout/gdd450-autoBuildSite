@@ -99,10 +99,10 @@ export default function GameDevInfoPaper (props) {
                   <Grid item xs={6}>
                     <DevBuildButton text="Download MacOS Build" icon={<PlatformIcons.MacOSIcon />}
                       logOpenCallback={props.logOpenCallback}
-                      linkCurrent={props.game?.builds?.macOS?.current?.link}
-                      linkPrevious={props.game?.builds?.macOS?.previous?.link}
-                      logCurrent={props.game?.builds?.macOS?.current?.log}
-                      logPrevious={props.game?.builds?.macOS?.previous?.log} />
+                      linkCurrent={props.game?.builds?.macos?.current?.link}
+                      linkPrevious={props.game?.builds?.macos?.previous?.link}
+                      logCurrent={props.game?.builds?.macos?.current?.log}
+                      logPrevious={props.game?.builds?.macos?.previous?.log} />
                   </Grid>
                 </Grid>
               </Box>
