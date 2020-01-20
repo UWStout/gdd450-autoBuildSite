@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 import {
   Container, CssBaseline, Button, Slide,
@@ -67,7 +67,8 @@ export default function GameBuildsPage (props) {
 
         {/* Main game page content */}
         { GAME_INFO && GAME_INFO !== 'wait' &&
-          <GameBuildsList gameList={GAME_INFO.games} logOpenCallback={openLog} />
+          <GameBuildsList displayMode={props.displayMode} gameTitle={props.gameTitle}
+            gameList={GAME_INFO.games} logOpenCallback={openLog} />
         }
       </Container>
 
@@ -131,4 +132,13 @@ function makeLogDialog (logURIs, index, title, changeLog, handleClose, classes) 
       </DialogActions>
     </Dialog>
   )
+}
+
+GameBuildsPage.propTypes = {
+  displayMode: PropTypes.string.isRequired,
+  gameTitle: PropTypes.string
+}
+
+GameBuildsPage.defaultProps = {
+  displayMode: 'list'
 }
