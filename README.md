@@ -31,3 +31,36 @@ The special repo object can have the following properties:
 * `viewURI`: A valid external URL that links to a site for VIEWING the repository.
 * `cloneURI`: A vlid external URL (with a protocol) that can be used for cloning the repository.
 * `evolutionVideo`: The Vimeo ID of the source code evolution video generated from this repository (ask me for this if you don't have it).
+
+## Example gameInfo.json
+Here is an example gameInfo.json file for the game Leon Nights:
+```js
+{
+  "key": "leonNights",
+  "courseID": "Berrier / Rave Yard",
+  "title": "Leon Nights",
+  "engine": "Unreal",
+  "engineVersion": "4.22.3",
+  "buildPlatforms": [
+    "win64", "macOS"
+  ],
+  "descriptionMarkdownURI": "WebsiteData/description.md",
+  "pageExtras": [
+    { "key": "instructions", "title": "How to Play", "markdownURI": "WebsiteData/instructions.md" },
+    { "key": "requirements", "title": "Hardware Requirements", "markdownURI": "WebsiteData/requirements.md" }
+  ],
+  "socialLinks": [
+    { "title": "Web Site", "href": "" },
+    { "title": "Facebook", "href": "https://www.facebook.com/raveyardstout/" },
+    { "title": "Twitter", "href": "" },
+    { "title": "Instagram", "href": "" },
+    { "title": "Snapchat", "href": "" }
+  ],
+  "repo": {
+    "type": "svn",
+    "viewURI": "http://144.13.22.62/svn/",
+    "cloneURI": "svn://144.13.22.62/svn/CodeCalciumCPP/trunk",
+    "evolutionVideo": "378716804"
+  }
+}
+```
