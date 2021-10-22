@@ -1,45 +1,45 @@
 {
-  "pageTitle": "'19 - '20 GDD 45X Dev Info",
+  "pageTitle": "'21 - '22 GDD 45X Dev Info",
   "games": [
     {
-      "key": "leonNights", "courseID": "Berrier / Rave Yard", "title": "Leon Nights",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/CodeCalciumCPP/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "witchsGarden", "courseID": "Berrier / Arcane Arcade", "title": "The Witch's Garden",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/witchsGarden450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "chopShop", "courseID": "Berrier / Team Scrap", "title": "Chop Shop", 
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/ChopShop/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "duolBots", "courseID": "Berrier / DuolBos Dev", "title": "DuolBots", 
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/duolBots450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "fiskr", "courseID": "Loken / Cast Iron Games", "title": "Fiskr",
+      "key": "kingsRun", "courseID": "Loken / Kings Run Dev", "title": "The Kings Run",
       "repo": { "type": "github", "owner": "UWStout", "name": "Fiskr" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "kisetsu", "courseID": "Loken / Studio Torii", "title": "Kisetsu",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/PurpleTeam/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "momentus", "courseID": "Loken / Momentus Dev", "title": "Momentus",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/mom450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "pestilence", "courseID": "Seaver / Third Eye", "title": "Pestilence",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/Lucid/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "reactive", "courseID": "Seaver / Re:Active Dev", "title": "Re:Active",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/reActive/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "shepherdsSky", "courseID": "Seaver / ba2", "title": "Shepherd's Sky",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/ShepherdsSky/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "graveRobbers", "courseID": "Seaver / Grave Robbers Dev", "title": "Grave Robbers",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/graveRobber450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "fateOfFactions", "courseID": "Tetzlaff / The 5th Faction", "title": "Fate of Factions",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/FantasyFactionWars/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "dungeonHeroes", "courseID": "Tetzlaff / Dungeon Heroes Dev", "title": "Dungeon Heroes",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/dungeonHeroes450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "nekirisTail", "courseID": "Tetzlaff / Cats in the Bag", "title": "Nekiri's Tail",
-      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/VigilanteKitty/trunk" },
-      "jsonPath": "WebsiteData/gameInfo.json"
+      "key": "newt", "courseID": "Tetzlaff / Newt Dev", "title": "Newt!",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/newt450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
     }
   ]
 }

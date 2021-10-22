@@ -1,0 +1,45 @@
+{
+  "pageTitle": "'19 - '20 GDD 45X Dev Info",
+  "games": [
+    {
+      "key": "leonNights", "courseID": "Berrier / Rave Yard", "title": "Leon Nights",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/CodeCalciumCPP/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "chopShop", "courseID": "Berrier / Team Scrap", "title": "Chop Shop", 
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/ChopShop/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "fiskr", "courseID": "Loken / Cast Iron Games", "title": "Fiskr",
+      "repo": { "type": "github", "owner": "UWStout", "name": "Fiskr" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "kisetsu", "courseID": "Loken / Studio Torii", "title": "Kisetsu",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/PurpleTeam/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "pestilence", "courseID": "Seaver / Third Eye", "title": "Pestilence",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/Lucid/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "shepherdsSky", "courseID": "Seaver / ba2", "title": "Shepherd's Sky",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/ShepherdsSky/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "fateOfFactions", "courseID": "Tetzlaff / The 5th Faction", "title": "Fate of Factions",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/FantasyFactionWars/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    },
+    {
+      "key": "nekirisTail", "courseID": "Tetzlaff / Cats in the Bag", "title": "Nekiri's Tail",
+      "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/VigilanteKitty/trunk" },
+      "jsonPath": "WebsiteData/gameInfo.json"
+    }
+  ]
+}
