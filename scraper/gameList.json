@@ -7,7 +7,7 @@
       "jsonPath": "WebsiteData/gameInfo.json"
     },
     {
-      "key": "scrapyard", "courseID": "Berrier / Team Scrap", "title": "Scrapyard", 
+      "key": "chopShop", "courseID": "Berrier / Team Scrap", "title": "Chop Shop", 
       "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/ChopShop/trunk" },
       "jsonPath": "WebsiteData/gameInfo.json"
     },
@@ -17,7 +17,7 @@
       "jsonPath": "WebsiteData/gameInfo.json"
     },
     {
-      "key": "purityOfSeasons", "courseID": "Loken / Studio Torii", "title": "Purity of Seasons",
+      "key": "kisetsu", "courseID": "Loken / Studio Torii", "title": "Kisetsu",
       "repo": { "type": "mscs-svn", "URI": "svn://144.13.22.62/svn/PurpleTeam/trunk" },
       "jsonPath": "WebsiteData/gameInfo.json"
     },
