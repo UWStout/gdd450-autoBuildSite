@@ -7,13 +7,13 @@ import https from 'https'
 import CONFIG from './privateConfig.json'
 
 // Official GitHub rest api
-import Octokit from '@octokit/rest'
+import { Octokit } from '@octokit/rest'
 
 // Script for decoding base64 data
 import atob from 'atob'
 
 // Instantiate and configure our Octokit REST instance
-const octokit = Octokit(CONFIG.github)
+const octokit = new Octokit(CONFIG.github)
 
 /**
  * Retrieve a file from a github repo using a private access key. The file contents

@@ -6,14 +6,19 @@ import fs from 'fs'
 import ChildProcess from 'child_process'
 
 // Repository helper functions
-import { retrieveGithubFile } from './githubHelpers'
-import { retrieveSVNFile } from './subversionHelpers'
+import { retrieveGithubFile } from './githubHelpers.js'
+import { retrieveSVNFile } from './subversionHelpers.js'
 
 // List of games and vital data for each
 import gameInfo from './gameList.json'
 
 // Customized list of file data that will be written to the public/game_info folder
 const gameDataList = []
+
+// Make sure the game_builds dir exists
+if (!fs.existsSync(path.join('public', 'game_builds'))) {
+  fs.mkdirSync(path.join('public', 'game_builds'), { recursive: true })
+}
 
 // List of all files in the build dir
 const buildAndLogFiles = fs.readdirSync(path.join('public', 'game_builds'));
