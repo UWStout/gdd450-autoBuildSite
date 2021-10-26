@@ -13,7 +13,7 @@
     },
     {
       "key": "kingsRun", "courseID": "Loken / Kings Run Dev", "title": "The Kings Run",
-      "repo": { "type": "github", "owner": "UWStout", "name": "Fiskr" },
+      "repo": { "type": "github", "owner": "Lautha1", "name": "TheKingsRace" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {

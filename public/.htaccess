@@ -1,9 +1,0 @@
-# disable directory browsing
-Options All -Indexes
-
-# No restrictions
-allow from all
-
-# Disable authorization
-AuthType None
-Require all granted
