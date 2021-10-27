@@ -40,10 +40,10 @@ const buildAndLogFiles = fs.readdirSync(path.join('public', 'game_builds'));
 
     // Re-write game data file with new links and name
     fs.writeFileSync(gameDataFilename, JSON.stringify(gameData), { encoding: 'UTF8' })
-    console.log('\t' + gameDataFilename)
 
     // Sanitize the file separator
-    const sanitizedFilename = gameDataFilename.replaceAll('\\', '/')
+    const sanitizedFilename = gameDataFilename?.replace(/\\/g, '/')
+    console.log('\t' + sanitizedFilename)
 
     // Add to list of games
     gameDataList.push({
@@ -168,7 +168,8 @@ async function downloadAndProcessGameDataFile (curGame) {
         if (!markdownFile) {
           console.error('\tFailed to retrieve game description markdown file')
         } else {
-          markdownFile = markdownFile.replaceAll('\\', '/')
+          console.log(typeof markdownFile)
+          markdownFile = markdownFile?.replace(/\\/g, '/')
           /* eslint-disable require-atomic-updates */
           gameData.descriptionMarkdownURI = markdownFile.slice(markdownFile.indexOf('/') + 1)
           /* eslint-enable require-atomic-updates */
@@ -191,7 +192,7 @@ async function downloadAndProcessGameDataFile (curGame) {
           console.error('\t\tURI -> ' + gameData.pageExtras[i].markdownURI)
         } else {
           /* eslint-disable require-atomic-updates */
-          markdownFile = markdownFile.replaceAll('\\', '/')
+          markdownFile = markdownFile?.replace(/\\/g, '/')
           gameData.pageExtras[i].markdownURI = markdownFile.slice(markdownFile.indexOf('/') + 1)
           /* eslint-enable require-atomic-updates */
           console.log('\t' + gameData.pageExtras[i].markdownURI)

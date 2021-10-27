@@ -36,6 +36,10 @@ if (serve) {
   ESBuild.serve({ port: 3000, servedir: 'public' }, options)
     .then(server => {
       console.log(`Serving dev code at ${server.host}:${server.port}`)
+
+      function handleExit (signal) { server.stop() }
+      process.on('SIGINT', handleExit)
+      process.on('SIGTERM', handleExit)
     })
     .catch(() => {
       process.exit(1)

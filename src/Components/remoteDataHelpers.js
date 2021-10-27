@@ -62,16 +62,17 @@ export function useMarkdown (markdownDataURL) {
       try {
         Axios.get(markdownDataURL, { responseType: 'text' }).then((result) => {
           // Check that the returned content is actually markdown
+          // ERROR: esbuild dev server does not set the content-type correctly
           // Note: the server must set the content-type properly for this to work!
-          if (result.headers['content-type'].search(/text\/markdown/) === -1) {
-            setMDString('## _ERROR:_ Retrieved data is not markdown\n' +
-                      '```js\n' +
-                      'markdownDataURL = "' + markdownDataURL + '"\n' +
-                      'result.headers[\'content-type\'] = "' + result.headers['content-type'] + '"\n' +
-                      '```')
-          } else {
-            setMDString(result.data)
-          }
+          // if (result.headers['content-type'].search(/text\/markdown/) === -1) {
+          //   setMDString('## _ERROR:_ Retrieved data is not markdown\n' +
+          //             '```js\n' +
+          //             'markdownDataURL = "' + markdownDataURL + '"\n' +
+          //             'result.headers[\'content-type\'] = "' + result.headers['content-type'] + '"\n' +
+          //             '```')
+          // } else {
+          setMDString(result.data)
+          // }
         }).catch((error) => {
           // Something went wrong with the AJAX call so log it and return an error message
           console.error(`AJAX request failed - ${error}`)
