@@ -23,7 +23,7 @@
     },
     {
       "key": "reactive", "courseID": "Seaver / Re:Active Dev", "title": "Re:Active",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/reActive/trunk" },
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/reActive450/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {

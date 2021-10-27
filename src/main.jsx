@@ -1,7 +1,3 @@
-// Polyfill for advanced javascript transformation via Babel
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
-
 // Basic react includes
 import ReactDOM from 'react-dom'
 import React from 'react'
@@ -19,14 +15,9 @@ import GameBuildsPage from './Components/GameBuildsPage.jsx'
 const URLParams = queryString.parse(window.location.search)
 
 // Function to mount our react app
-window.mountApp = () => {
-  ReactDOM.render(
-    <CookiesProvider>
-      <GameBuildsPage displayMode={URLParams.displayMode || 'list'} gameTitle={URLParams.gameTitle} />
-    </CookiesProvider>,
-    document.getElementById('app')
-  )
-}
-
-// Render the game grid for the first time
-window.mountApp()
+ReactDOM.render(
+  <CookiesProvider>
+    <GameBuildsPage displayMode={URLParams.displayMode || 'list'} gameTitle={URLParams.gameTitle} />
+  </CookiesProvider>,
+  document.getElementById('root')
+)

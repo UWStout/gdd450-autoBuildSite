@@ -5,8 +5,16 @@ import fs from 'fs'
 // Utilities for spawning child processes
 import ChildProcess from 'child_process'
 
-// Config containing private access key (DO NOT COMMIT)
-import CONFIG from './privateConfig.json'
+import dotenv from 'dotenv'
+
+// Read in environment variables
+dotenv.config()
+const CONFIG = {
+  svn: {
+    username: process.env.SVN_USERNAME,
+    password: process.env.SVN_PASSWORD
+  }
+}
 
 /**
  * Retrieve the latest version of a file from a subversion repository

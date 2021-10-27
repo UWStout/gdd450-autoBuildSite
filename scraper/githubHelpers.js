@@ -3,14 +3,20 @@ import path from 'path'
 import fs from 'fs'
 import https from 'https'
 
-// Config containing private access key (DO NOT COMMIT)
-import CONFIG from './privateConfig.json'
+// Access private config data
+import dotenv from 'dotenv'
 
 // Official GitHub rest api
 import { Octokit } from '@octokit/rest'
 
 // Script for decoding base64 data
 import atob from 'atob'
+
+// Read in environment variables
+dotenv.config()
+const CONFIG = {
+  github: process.env.GITHUB_TOKEN
+}
 
 // Instantiate and configure our Octokit REST instance
 const octokit = new Octokit(CONFIG.github)
