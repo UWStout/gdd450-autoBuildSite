@@ -1,4 +1,4 @@
-import { RepoInfo, SocialLink, toCamelCaseString, PlatformEnum } from './GameUtils'
+import { RepoInfo, SocialLink, toCamelCaseString, PlatformEnum } from './GameUtils.js'
 
 export default class GameInfo {
   constructor (title, courseID, platforms, descMD, requireMD, instructMD, social, repo) {

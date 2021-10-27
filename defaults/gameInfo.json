@@ -1,0 +1,26 @@
+{
+  "key": "",
+  "courseID": "Teacher / Team",
+  "title": "",
+  "engine": "",
+  "engineVersion": "",
+  "buildPlatforms": ["win64", "macOS"],
+  "descriptionMarkdownURI": "WebsiteData/description.md",
+  "pageExtras": [
+    { "key": "instructions", "title": "How to Play", "markdownURI": "WebsiteData/instructions.md" },
+    { "key": "requirements", "title": "Hardware Requirements", "markdownURI": "WebsiteData/requirements.md" }
+  ],
+  "socialLinks": [
+    { "title": "Web Site", "href": "" },
+    { "title": "Facebook", "href": "" },
+    { "title": "Twitter", "href": "" },
+    { "title": "Instagram", "href": "" },
+    { "title": "Snapchat", "href": "" }
+  ],
+  "repo": {
+    "type": "",
+    "viewURI": "",
+    "cloneURI": "",
+    "evolutionVideo": ""
+  }
+}
