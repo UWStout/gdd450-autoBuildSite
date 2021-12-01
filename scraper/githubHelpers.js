@@ -19,7 +19,7 @@ const CONFIG = {
 }
 
 // Instantiate and configure our Octokit REST instance
-const octokit = new Octokit(CONFIG.github)
+const octokit = new Octokit({ auth: CONFIG.github })
 
 /**
  * Retrieve a file from a github repo using a private access key. The file contents
@@ -43,7 +43,7 @@ export async function retrieveGithubFile (repo, resourcePath, destDir) {
 
     // List files in that repo directory
     const pathOnly = path.dirname(resourcePath)
-    const fileList = await octokit.repos.getContents({ owner: repo.owner, repo: repo.name, path: pathOnly || '' })
+    const fileList = await octokit.rest.repos.getContent({ owner: repo.owner, repo: repo.name, path: pathOnly || '' })
 
     // Locate the one needed
     const whichFile = fileList.data.find((file) => {
@@ -52,7 +52,7 @@ export async function retrieveGithubFile (repo, resourcePath, destDir) {
 
     // If found, retrieve that one file
     if (whichFile) {
-      results = await octokit.git.getBlob({ owner: repo.owner, repo: repo.name, file_sha: whichFile.sha })
+      results = await octokit.rest.git.getBlob({ owner: repo.owner, repo: repo.name, file_sha: whichFile.sha })
     } else {
       throw new Error('File not found in directory list')
     }
@@ -92,7 +92,7 @@ export async function retrieveGithubFile (repo, resourcePath, destDir) {
  */
 export function retrieveGithubArchive (owner, repo, destFolder) {
   return new Promise((resolve, reject) => {
-    octokit.repos.getArchiveLink({ owner, repo, archive_format: 'tarball', ref: 'master' })
+    octokit.rest.repos.getArchiveLink({ owner, repo, archive_format: 'tarball', ref: 'master' })
       .then((response) => {
         if (response.status !== 200) {
           reject(new Error('Bad status code for archive retrieval (' + response.status + ')'))

@@ -18,7 +18,7 @@
     },
     {
       "key": "momentus", "courseID": "Loken / Momentus Dev", "title": "Momentus",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/mom450/trunk" },
+      "repo": { "type": "github", "owner": "Thefeelz", "name": "URPMomentus" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
