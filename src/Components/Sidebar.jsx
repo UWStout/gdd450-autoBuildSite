@@ -31,19 +31,17 @@ export default function Sidebar (props) {
       case 'unity': icon = (<EngineIcons.UnityIcon />); break
     }
     engineSec = (
-      <React.Fragment>
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <Typography variant="h6">Engine:</Typography>
-          </Grid>
-          <Grid item xs={2}>{icon}</Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" align="right" display="inline" width={1.0}>
-              v{props.engineVersion}
-            </Typography>
-          </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Typography variant="h6">Engine:</Typography>
         </Grid>
-      </React.Fragment>
+        <Grid item xs={2}>{icon}</Grid>
+        <Grid item xs={6}>
+          <Typography variant="h6" align="right" display="inline" width={1.0}>
+            {`v${props.engineVersion}`}
+          </Typography>
+        </Grid>
+      </Grid>
     )
   }
 
@@ -52,46 +50,46 @@ export default function Sidebar (props) {
     const icons = props.buildPlatforms.map((platform) => {
       switch (platform.toLowerCase()) {
         case 'win': case 'win64': case 'windows': case 'ms windows': case 'microsoft windows':
-          return (<PlatformIcons.WindowsIcon key={`${props.gameKey}_buildicon_win64`}/>)
+          return (<PlatformIcons.WindowsIcon key={`${props.gameKey}_buildicon_win64`} />)
 
         case 'mac64': case 'macos': case 'mac os': case 'osx':
-          return (<PlatformIcons.MacOSIcon key={`${props.gameKey}_buildicon_macos`}/>)
+          return (<PlatformIcons.MacOSIcon key={`${props.gameKey}_buildicon_macos`} />)
 
         case 'linux': case 'lnx': case 'unix': case '*nix': case 'nix':
-          return (<PlatformIcons.LinuxIcon key={`${props.gameKey}_buildicon_linux`}/>)
+          return (<PlatformIcons.LinuxIcon key={`${props.gameKey}_buildicon_linux`} />)
 
         case 'android':
-          return (<PlatformIcons.AndroidIcon key={`${props.gameKey}_buildicon_android`}/>)
+          return (<PlatformIcons.AndroidIcon key={`${props.gameKey}_buildicon_android`} />)
 
         case 'ios': case 'apple ios': case 'ipad os':
-          return (<PlatformIcons.IOSIcon key={`${props.gameKey}_buildicon_ios`}/>)
+          return (<PlatformIcons.IOSIcon key={`${props.gameKey}_buildicon_ios`} />)
 
         case 'playstation': case 'playstation4': case 'playstation 4': case 'ps4':
-          return (<PlatformIcons.PlaystationIcon key={`${props.gameKey}_buildicon_ps4`}/>)
+          return (<PlatformIcons.PlaystationIcon key={`${props.gameKey}_buildicon_ps4`} />)
 
         case 'xbox': case 'xbox one': case 'xbox 1': case 'xbone': case 'xb1': case 'xb':
-          return (<PlatformIcons.XBoxIcon key={`${props.gameKey}_buildicon_xb1`}/>)
+          return (<PlatformIcons.XBoxIcon key={`${props.gameKey}_buildicon_xb1`} />)
 
-          // TODO: This icon doesn't exist yet
-          // case 'nintendo switch': case 'switch': case 'nintendoswitch': case 'ns': case 'nsw':
-          //   return (<PlatformIcons.NintendoSwitch key={`${props.gameKey}_buildicon_nsw`}/>)
+        case 'nintendo switch': case 'switch': case 'nintendoswitch': case 'ns': case 'nsw':
+          return (<PlatformIcons.NintendoSwitchIcon key={`${props.gameKey}_buildicon_nsw`} />)
 
         case 'web': case 'html': case 'html5': case 'web browser': case 'webbrowser':
-          return (<SocialLinksIcons.WebsiteIcon key={`${props.gameKey}_buildicon_web`}/>)
+          return (<SocialLinksIcons.WebsiteIcon key={`${props.gameKey}_buildicon_web`} />)
+
+        default:
+          return (<div />)
       }
     })
 
     platformsSec = (
-      <React.Fragment>
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <Typography variant="h6">Builds:</Typography>
-          </Grid>
-          <Grid item xs={8}>
-            {icons}
-          </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Typography variant="h6">Builds:</Typography>
         </Grid>
-      </React.Fragment>
+        <Grid item xs={8}>
+          {icons}
+        </Grid>
+      </Grid>
     )
   }
 
@@ -100,8 +98,7 @@ export default function Sidebar (props) {
       {engineSec}
       {platformsSec}
       {(engineSec || platformsSec) &&
-        <Divider variant="fullWidth" className={classes.sidebarTitle} />
-      }
+        <Divider variant="fullWidth" className={classes.sidebarTitle} />}
       {props.sections.map((collection, i) => (
         <SidebarLinkList title={collection.title} items={collection.items} gameKey={props.gameKey} key={`${props.gameKey}_${collection.title}`} />
       ))}
