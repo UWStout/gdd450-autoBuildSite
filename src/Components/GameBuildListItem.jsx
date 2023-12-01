@@ -1,48 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography, Box } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-
-import { makeStyles } from '@material-ui/core/styles'
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography, Box } from '@mui/material'
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 
 import GameDevInfoPaper from './GameDevInfoPaper.jsx'
+import GameInfo from '../../shared/GameInfo.js'
 
-const useStyles = makeStyles(theme => {
-  return ({
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      flexBasis: '33.33%',
-      flexShrink: 0
-    },
-    secondaryHeading: {
-      fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
-      marginLeft: 'auto'
-    },
-    panelDetails: {
-      borderTop: '1px solid rgba(0, 0, 0, .125)'
-    }
-  })
-})
+const headingSX = {
+  fontSize: theme => theme.typography.pxToRem(15),
+  flexBasis: '33.33%',
+  flexShrink: 0
+}
+
+const secondaryHeadingSX = {
+  fontSize: theme => theme.typography.pxToRem(15),
+  color: theme => theme.palette.text.secondary,
+  marginLeft: 'auto'
+}
+
+const panelDetailsSX = {
+  borderTop: '1px solid rgba(0, 0, 0, .125)'
+}
 
 export default function GameBuildListItem (props) {
-  const classes = useStyles()
+  const { game, expanded, handleExpansion, logOpenCallback } = props
+
   return (
     <ExpansionPanel
       TransitionProps={{ unmountOnExit: true }}
-      expanded={props.expanded}
-      onChange={props.handleExpansion(props.game.key)}>
+      expanded={expanded}
+      onChange={handleExpansion(game.key)}
+    >
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
-        aria-controls={`${props.game.key}-content`}
-        id={`${props.game.key}-header`}>
-        <Typography className={classes.heading}>{props.game.title}</Typography>
-        <Typography className={classes.secondaryHeading}>{props.game.courseID}</Typography>
+        aria-controls={`${game.key}-content`}
+        id={`${game.key}-header`}
+      >
+        <Typography sx={headingSX}>{game.title}</Typography>
+        <Typography sx={secondaryHeadingSX}>{game.courseID}</Typography>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails className={classes.panelDetails}>
+      <ExpansionPanelDetails sx={panelDetailsSX}>
         <Box width={1}>
-          <GameDevInfoPaper logOpenCallback={props.logOpenCallback} game={props.game} />
+          <GameDevInfoPaper logOpenCallback={logOpenCallback} game={game} />
         </Box>
       </ExpansionPanelDetails>
     </ExpansionPanel>
@@ -50,8 +50,12 @@ export default function GameBuildListItem (props) {
 }
 
 GameBuildListItem.propTypes = {
-  game: PropTypes.object.isRequired,
+  game: PropTypes.shape(GameInfo.shape()).isRequired,
   expanded: PropTypes.bool.isRequired,
   handleExpansion: PropTypes.func.isRequired,
   logOpenCallback: PropTypes.func
+}
+
+GameBuildListItem.defaultProps = {
+  logOpenCallback: undefined
 }

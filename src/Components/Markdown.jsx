@@ -1,19 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { withStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import { Typography, Link } from '@mui/material'
 
 import ReactMarkdown from 'markdown-to-jsx'
-
-import { useMarkdown } from './remoteDataHelpers'
-
-const styles = theme => ({
-  listItem: {
-    marginTop: theme.spacing(1)
-  }
-})
+import { useMarkdown } from './remoteDataHelpers.js'
 
 const options = {
   overrides: {
@@ -24,11 +15,11 @@ const options = {
     p: { component: Typography, props: { paragraph: true } },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(({ classes, ...props }) => (
-        <li className={classes.listItem}>
+      component: props => (
+        <li style={{ marginTop: '8px' }}>
           <Typography component="span" {...props} />
         </li>
-      ))
+      )
     }
   }
 }
@@ -40,7 +31,8 @@ export function Markdown (props) {
 }
 
 export function AsyncMarkdown (props) {
-  const markdownString = useMarkdown(props.URI)
+  const { URI } = props
+  const markdownString = useMarkdown(URI)
 
   return (
     <ReactMarkdown options={options}>

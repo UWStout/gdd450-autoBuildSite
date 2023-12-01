@@ -1,3 +1,5 @@
+import { PropTypes } from '@mui/material'
+
 import { RepoInfo, SocialLink, toCamelCaseString, PlatformEnum } from './GameUtils.js'
 
 export default class GameInfo {
@@ -16,6 +18,20 @@ export default class GameInfo {
     this.buildPlatforms = platforms || GameInfo.DEFAULT_PLATFORMS
     this.socialLinks = social || GameInfo.DEFAULT_SOCIAL_LINKS
     this.repo = repo || GameInfo.DEFAULT_REPO_INFO
+  }
+
+  static shape () {
+    return {
+      key: PropTypes.string.isRequired,
+      courseID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      descriptionMDURI: PropTypes.string,
+      requirementsMDURI: PropTypes.string,
+      instructionsMDURI: PropTypes.string,
+      buildPlatforms: PlatformEnum.shape(),
+      socialLinks: SocialLink.shape(),
+      repo: RepoInfo.shape()
+    }
   }
 }
 

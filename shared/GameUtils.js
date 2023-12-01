@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export const RepoTypeEnum = {
   UNKNOWN: 0,
   GIT: 1,
@@ -20,6 +22,9 @@ export const RepoTypeEnum = {
       if (match > -1) { return i }
     }
     return RepoTypeEnum.UNKNOWN
+  },
+  shape: function () {
+    return PropTypes.oneOf(Object.values(RepoTypeEnum.props).map(v => v.name))
   }
 }
 
@@ -53,6 +58,9 @@ export const PlatformEnum = {
       if (match > -1) { return i }
     }
     return PlatformEnum.UNKNOWN
+  },
+  shape: function () {
+    return PropTypes.oneOf(Object.values(PlatformEnum.props).map(v => v.name))
   }
 }
 
@@ -60,6 +68,13 @@ export class SocialLink {
   constructor (type, URI) {
     this.type = type
     this.URI = URI
+  }
+
+  static shape () {
+    return {
+      type: PropTypes.string.isRequired,
+      URI: PropTypes.string.isRequired
+    }
   }
 }
 
@@ -99,6 +114,15 @@ export class RepoInfo {
       this._evolutionVideo = value.toString()
     } else if (typeof value === 'string' && !isNaN(parseInt(value))) {
       this._evolutionVideo = value
+    }
+  }
+
+  static shape () {
+    return {
+      type: RepoTypeEnum.shape(),
+      view: PropTypes.string,
+      clone: PropTypes.string,
+      evolutionVideo: PropTypes.string
     }
   }
 }

@@ -1,39 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
+import { Typography, Container } from '@mui/material'
 
 import Copyright from './Copyright.jsx'
 
-const useStyles = makeStyles(theme => ({
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(3, 0)
-  }
-}))
+const footerSX = {
+  backgroundColor: theme => theme.palette.background.paper,
+  marginTop: theme => theme.spacing(8),
+  padding: theme => theme.spacing(3, 0)
+}
 
 export default function PageFooter (props) {
-  const classes = useStyles()
+  const { footerTitle, children, ...rest } = props
+
   return (
-    <footer className={classes.footer}>
+    <footer>
+      {/* ^^ TODO: Needs spacing styling */}
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {props.footerTitle}
+          {footerTitle}
         </Typography>
-        {props.children &&
+        {!!children &&
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            {props.children}
-          </Typography>
-        }
+            {children}
+          </Typography>}
         <br />
-        <Copyright
-          copyrightYear={props.copyrightYear}
-          siteHref={props.siteHref}
-          siteText={props.siteText} />
+        <Copyright {...rest} />
       </Container>
     </footer>
   )
@@ -41,8 +34,9 @@ export default function PageFooter (props) {
 
 PageFooter.propTypes = {
   children: PropTypes.node,
-  footerTitle: PropTypes.string.isRequired,
-  copyrightYear: PropTypes.number,
-  siteHref: PropTypes.string.isRequired,
-  siteText: PropTypes.string.isRequired
+  footerTitle: PropTypes.string.isRequired
+}
+
+PageFooter.defaultProps = {
+  children: null
 }

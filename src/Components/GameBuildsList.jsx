@@ -3,27 +3,19 @@ import PropTypes from 'prop-types'
 
 import { useCookies } from 'react-cookie'
 
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@mui/material'
 
 import GameDevInfoPaper from './GameDevInfoPaper.jsx'
 import GameBuildListItem from './GameBuildListItem.jsx'
 import { useJSON } from './remoteDataHelpers'
-
-const useStyles = makeStyles(theme => {
-  return ({
-    root: {
-      width: '100%'
-    }
-  })
-})
+import GameInfo from '../../shared/GameInfo.js'
 
 export default function GameBuildsList (props) {
+  const { gameList, displayMode, gameTitle, logOpenCallback } = props
   const [cookies, setCookie] = useCookies(['expanded'])
-  const classes = useStyles()
 
   // Retrieve complete game info for each game
-  const gameList = props.gameList.map((curGame) => {
+  const gameObjList = gameList.map((curGame) => {
     // We can safely disable the warnings here because the number of games is fixed
     // at runtime so the hook is always called in order despite being in a loop.
     /* eslint-disable react-hooks/rules-of-hooks */
@@ -47,18 +39,21 @@ export default function GameBuildsList (props) {
   }
 
   // Build the array of games
-  const listItems = gameList.map((game) => {
+  const listItems = gameObjList.map((game) => {
     const isExpanded = !game.loading && (expanded === game.key)
     return (
-      <GameBuildListItem key={game.key} game={game}
-        logOpenCallback={props.logOpenCallback}
-        handleExpansion={handleChange} expanded={isExpanded} />
+      <GameBuildListItem
+        key={game.key}
+        game={game}
+        logOpenCallback={logOpenCallback}
+        handleExpansion={handleChange} expanded={isExpanded}
+      />
     )
   })
 
   return (
-    <div className={classes.root}>
-      {buildMainContent(props.displayMode, props.gameTitle, gameList, listItems, props.logOpenCallback)}
+    <div style={{ width: '100%' }}>
+      {buildMainContent(displayMode, gameTitle, gameObjList, listItems, logOpenCallback)}
     </div>
   )
 }
@@ -94,12 +89,14 @@ function buildMainContent (displayMode, gameTitle, gameList, listItems, logOpenC
 }
 
 GameBuildsList.propTypes = {
-  gameList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  displayMode: PropTypes.string.isRequired,
+  gameList: PropTypes.arrayOf(PropTypes.shape(GameInfo.shape())).isRequired,
+  displayMode: PropTypes.string,
   logOpenCallback: PropTypes.func,
   gameTitle: PropTypes.string
 }
 
 GameBuildsList.defaultProps = {
-  displayMode: 'list'
+  displayMode: 'list',
+  gameTitle: 'unknown',
+  logOpenCallback: undefined
 }

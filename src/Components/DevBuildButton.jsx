@@ -1,44 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Box, ButtonGroup, Button, Grow, Paper, Popper, MenuItem, Divider, MenuList } from '@material-ui/core'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import MenuIcon from '@material-ui/icons/Menu'
+import { Box, ButtonGroup, Button, Grow, Paper, Popper, MenuItem, Divider, MenuList, ClickAwayListener } from '@mui/material'
+import { Menu as MenuIcon } from '@mui/icons-material'
 
 import { downloadFile } from './remoteDataHelpers'
 
 const options = ['Download previous build', '#', 'View currrent build log', 'View previous build log']
 
 export default function DevBuildButton (props) {
+  const { linkCurrent, linkPrevious, logsCurrent, logsPrevious, logOpenCallback, buildTitle, icon, text } = props
+
   const anchorRef = React.useRef(null)
   const [open, setOpen] = React.useState(false)
 
   const linkStates = [
-    props.linkPrevious !== undefined,
+    linkPrevious !== undefined,
     false,
-    props.logsCurrent !== undefined,
-    props.logsPrevious !== undefined
+    logsCurrent !== undefined,
+    logsPrevious !== undefined
   ]
 
   const handleClick = () => {
-    downloadFile(props.linkCurrent)
+    downloadFile(linkCurrent)
   }
 
   const handleMenuItemClick = (event, index) => {
     switch (index) {
       case 0:
-        downloadFile(props.linkPrevious)
+        downloadFile(linkPrevious)
         break
 
       case 2:
-        if (props.logOpenCallback) {
-          props.logOpenCallback(props.logsCurrent, 'Current build Logs for ' + props.buildTitle)
+        if (logOpenCallback) {
+          logOpenCallback(logsCurrent, 'Current build Logs for ' + buildTitle)
         }
         break
 
       case 3:
-        if (props.logOpenCallback) {
-          props.logOpenCallback(props.logsPrevious, 'Previous build Logs for ' + props.buildTitle)
+        if (logOpenCallback) {
+          logOpenCallback(logsPrevious, 'Previous build Logs for ' + buildTitle)
         }
         break
     }
@@ -61,8 +62,11 @@ export default function DevBuildButton (props) {
     <Box display="flex">
       <Box m="auto">
         <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
-          <Button disabled={!props.linkCurrent} onClick={handleClick} endIcon={props.icon}>{props.text}</Button>
-          <Button size="small" onClick={handleToggle} aria-haspopup="menu"
+          <Button disabled={!linkCurrent} onClick={handleClick} endIcon={icon}>{text}</Button>
+          <Button
+            size="small"
+            onClick={handleToggle}
+            aria-haspopup="menu"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-label="download other builds or view logs"
@@ -74,9 +78,7 @@ export default function DevBuildButton (props) {
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
-              style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
-              }}
+              sx={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
             >
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
@@ -86,8 +88,11 @@ export default function DevBuildButton (props) {
                         return (<Divider key={`${option}-${index}`} />)
                       } else {
                         return (
-                          <MenuItem disabled={!linkStates[index]} key={option}
-                            onClick={event => handleMenuItemClick(event, index)}>
+                          <MenuItem
+                            disabled={!linkStates[index]}
+                            key={option}
+                            onClick={event => handleMenuItemClick(event, index)}
+                          >
                             {option}
                           </MenuItem>
                         )
@@ -113,4 +118,14 @@ DevBuildButton.propTypes = {
   logsPrevious: PropTypes.arrayOf(PropTypes.string),
   icon: PropTypes.node,
   logOpenCallback: PropTypes.func
+}
+
+DevBuildButton.defaultProps = {
+  buildTitle: 'Current Build',
+  icon: undefined,
+  linkCurrent: undefined,
+  linkPrevious: undefined,
+  logOpenCallback: undefined,
+  logsCurrent: undefined,
+  logsPrevious: undefined
 }

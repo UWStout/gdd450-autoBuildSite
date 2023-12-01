@@ -5,9 +5,7 @@ import {
   Container, CssBaseline, Button, Slide,
   Dialog, DialogTitle, DialogContent, DialogActions,
   FormControl, Select, MenuItem, InputLabel
-} from '@material-ui/core'
-
-import { makeStyles } from '@material-ui/core/styles'
+} from '@mui/material'
 
 import { LazyLog } from 'react-lazylog'
 
@@ -18,19 +16,19 @@ import PageFooter from './PageFooter.jsx'
 import { useJSON } from './remoteDataHelpers'
 
 // This will make the dialog window fill its vertical space and allow the log viewer to be visible
-const useStyles = makeStyles(theme => ({
-  dialogPaper: {
-    minHeight: '90vh',
-    maxHeight: '90vh'
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
-}))
+const dialogPaperSX = {
+  minHeight: '90vh',
+  maxHeight: '90vh'
+}
+
+const formControlSX = {
+  margin: theme => theme.spacing(1),
+  minWidth: 120
+}
+
+const selectEmptySX = {
+  marginTop: theme => theme.spacing(2)
+}
 
 // Transition component for the dialog
 const Transition = React.forwardRef(function Transition (props, ref) {
@@ -38,7 +36,7 @@ const Transition = React.forwardRef(function Transition (props, ref) {
 })
 
 export default function GameBuildsPage (props) {
-  const classes = useStyles()
+  const { displayMode, gameTitle } = props
 
   // Manage the log dialog state
   const [activeLog, setActiveLog] = useState({ URI: '', title: '' })
@@ -60,16 +58,18 @@ export default function GameBuildsPage (props) {
       <CssBaseline />
       <Container maxWidth="lg">
         {/* Upper page navigation */}
-        { GAME_INFO && GAME_INFO !== 'wait' &&
-          <GlobalNavBar title={GAME_INFO.pageTitle} showBackButton={false} />
-        }
+        { !!GAME_INFO && GAME_INFO !== 'wait' &&
+          <GlobalNavBar title={GAME_INFO.pageTitle} showBackButton={false} />}
         <br />
 
         {/* Main game page content */}
-        { GAME_INFO && GAME_INFO !== 'wait' &&
-          <GameBuildsList displayMode={props.displayMode} gameTitle={props.gameTitle}
-            gameList={GAME_INFO.games} logOpenCallback={openLog} />
-        }
+        { !!GAME_INFO && GAME_INFO !== 'wait' &&
+          <GameBuildsList
+            displayMode={displayMode}
+            gameTitle={gameTitle}
+            gameList={GAME_INFO.games}
+            logOpenCallback={openLog}
+          />}
       </Container>
 
       {/* Page footer with copyright info and link to UWStout main page. */}
@@ -81,7 +81,7 @@ export default function GameBuildsPage (props) {
 
       { /* If there is an active log, show it in a large modal dialog */ }
       { activeLog?.URI !== '' &&
-        makeLogDialog(activeLog.URI, activeLogIndex, activeLog.title, updateIndex, handleClose, classes)
+        makeLogDialog(activeLog.URI, activeLogIndex, activeLog.title, updateIndex, handleClose)
       }
     </React.Fragment>
   )
@@ -96,13 +96,17 @@ export default function GameBuildsPage (props) {
  * @param {function} handleClose Callback for the dialog close operation.
  * @param {object} classes Style classes prepared for this component with useStyles().
  */
-function makeLogDialog (logURIs, index, title, changeLog, handleClose, classes) {
+function makeLogDialog (logURIs, index, title, changeLog, handleClose) {
   const logSelector = (
-    <FormControl className={classes.formControl}>
+    <FormControl sx={formControlSX}>
       <InputLabel id="log-select-label">Select a Log</InputLabel>
-      <Select labelId="log-select-label" id="log-select"
+      <Select
+        labelId="log-select-label"
+        id="log-select"
         value={logURIs.length === 1 ? 0 : (index === -1 ? '' : index)}
-        className={classes.selectEmpty} onChange={changeLog}>
+        sx={selectEmptySX}
+        onChange={changeLog}
+      >
         {logURIs.map((logURI, idx) => (
           <MenuItem key={logURI} value={idx}>{logURI.split('-').pop()}</MenuItem>
         ))}
@@ -115,15 +119,19 @@ function makeLogDialog (logURIs, index, title, changeLog, handleClose, classes) 
   }
 
   return (
-    <Dialog TransitionComponent={Transition} fullWidth={true} maxWidth="lg" open={true}
+    <Dialog
+      open
+      fullWidth
+      TransitionComponent={Transition}
+      maxWidth="lg"
       keepMounted onClose={handleClose} aria-labelledby="media-dialog-title"
-      classes={{ paper: classes.dialogPaper }}>
+      PaperProps={{ sx: dialogPaperSX }}
+    >
       <DialogTitle id="media-dialog-title">{title}</DialogTitle>
-      <DialogContent dividers={true}>
+      <DialogContent dividers>
         {logSelector}
         { index > -1 && index < logURIs.length &&
-          <LazyLog extraLines={1} enableSearch url={logURIs[index]} selectableLines />
-        }
+          <LazyLog extraLines={1} enableSearch url={logURIs[index]} selectableLines />}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -135,10 +143,11 @@ function makeLogDialog (logURIs, index, title, changeLog, handleClose, classes) 
 }
 
 GameBuildsPage.propTypes = {
-  displayMode: PropTypes.string.isRequired,
+  displayMode: PropTypes.string,
   gameTitle: PropTypes.string
 }
 
 GameBuildsPage.defaultProps = {
-  displayMode: 'list'
+  displayMode: 'list',
+  gameTitle: 'unknown'
 }
