@@ -2,32 +2,32 @@
   "pageTitle": "2023-2024 GDD/CS 45X Dev Info",
   "games": [
     {
-      "key": "boogieBeyond", "courseID": "11:15a / Abyssal Inc.", "title": "Boogie Beyond",
+      "key": "FA23-BoogieBeyond", "courseID": "11:15a / Abyssal Inc.", "title": "Boogie Beyond",
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-BoogieBeyond/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "clubCrash", "courseID": "11:15a / Studio Boulder", "title": "Club Crash", 
+      "key": "FA23-ClubCrash", "courseID": "11:15a / Studio Boulder", "title": "Club Crash", 
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-ClubCrash/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "rippleFrawg", "courseID": "11:15a / Skipping Stones", "title": "Ripple & Frawg: The Seasonal Song",
+      "key": "FA23-RippleAndFrawg", "courseID": "11:15a / Skipping Stones", "title": "Ripple & Frawg: The Seasonal Song",
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-RippleAndFrawg/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "hyperPop", "courseID": "2:30p / HyperPop Team", "title": "HyperPop",
+      "key": "FA23-HyperPop", "courseID": "2:30p / HyperPop Team", "title": "HyperPop",
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-HyperPop/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "landOfLights", "courseID": "2:30p / Luminous Games", "title": "Land of Lights",
+      "key": "FA23-LandOfLights", "courseID": "2:30p / Luminous Games", "title": "Land of Lights",
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-LandOfLights/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "sunshredder", "courseID": "2:30p / Haywire Studio", "title": "SUNSHREDDER",
+      "key": "FA23-SUNSHREDDER", "courseID": "2:30p / Haywire Studio", "title": "SUNSHREDDER",
       "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-SUNSHREDDER/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     }

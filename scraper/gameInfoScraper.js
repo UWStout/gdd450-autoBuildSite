@@ -10,7 +10,7 @@ import { retrieveGithubFile } from './githubHelpers.js'
 import { retrieveSVNFile } from './subversionHelpers.js'
 
 // List of games and vital data for each
-import gameInfo from './gameList.json'
+import gameInfo from './gameList.json' assert { type: 'json' }
 
 // Customized list of file data that will be written to the public/game_info folder
 const gameDataList = []
@@ -116,7 +116,7 @@ async function downloadAndProcessGameDataFile (curGame) {
         }
 
         if (fields[0].toLowerCase() === gameData.key.toLowerCase()) {
-          // Determind build version (current, previous, stable)
+          // Determined build version (current, previous, stable)
           let ver = ''
           switch (fields[1].toLowerCase()) {
             case 'current': case 'weekly': ver = 'current'; break
