@@ -46,7 +46,8 @@ export default function GameBuildsList (props) {
         key={game.key}
         game={game}
         logOpenCallback={logOpenCallback}
-        handleExpansion={handleChange} expanded={isExpanded}
+        handleExpansion={handleChange}
+        expanded={isExpanded}
       />
     )
   })

@@ -1,3 +1,4 @@
+/* eslint-disable react/hook-use-state */
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 
@@ -58,7 +59,7 @@ export function useMarkdown (markdownDataURL) {
     if (markdownDataURL === '') {
       setMDString('')
     } else {
-      // Attemp an ajax call to load the markdown file
+      // Attempt an ajax call to load the markdown file
       try {
         Axios.get(markdownDataURL, { responseType: 'text' }).then((result) => {
           // Check that the returned content is actually markdown

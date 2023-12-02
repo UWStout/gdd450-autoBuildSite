@@ -6,7 +6,7 @@ import { Menu as MenuIcon } from '@mui/icons-material'
 
 import { downloadFile } from './remoteDataHelpers'
 
-const options = ['Download previous build', '#', 'View currrent build log', 'View previous build log']
+const options = ['Download previous build', '#', 'View current build log', 'View previous build log']
 
 export default function DevBuildButton (props) {
   const { linkCurrent, linkPrevious, logsCurrent, logsPrevious, logOpenCallback, buildTitle, icon, text } = props

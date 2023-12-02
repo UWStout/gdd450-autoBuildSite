@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography, Box } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Typography, Box } from '@mui/material'
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 
 import GameDevInfoPaper from './GameDevInfoPaper.jsx'
@@ -27,25 +27,25 @@ export default function GameBuildListItem (props) {
   const { game, expanded, handleExpansion, logOpenCallback } = props
 
   return (
-    <ExpansionPanel
+    <Accordion
       TransitionProps={{ unmountOnExit: true }}
       expanded={expanded}
       onChange={handleExpansion(game.key)}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`${game.key}-content`}
         id={`${game.key}-header`}
       >
         <Typography sx={headingSX}>{game.title}</Typography>
         <Typography sx={secondaryHeadingSX}>{game.courseID}</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails sx={panelDetailsSX}>
+      </AccordionSummary>
+      <AccordionDetails sx={panelDetailsSX}>
         <Box width={1}>
           <GameDevInfoPaper logOpenCallback={logOpenCallback} game={game} />
         </Box>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   )
 }
 

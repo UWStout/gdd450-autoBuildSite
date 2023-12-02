@@ -18,6 +18,12 @@ const options = {
   outdir: './public',
   entryNames: '/[name]',
 
+  // Configure loaders
+  loader: {
+    '.woff': 'dataurl',
+    '.woff2': 'dataurl'
+  },
+
   // Configure output types
   bundle: true,
   sourcemap: _DEV_,
@@ -26,29 +32,30 @@ const options = {
   // Define important variables
   define: {
     _VER_: `"${process.env.npm_package_version}"`,
-    _DEV_,
+    _DEV_: (_DEV_ ? 'true' : 'false'),
     'process.env.NODE_ENV': (_DEV_ ? '"development"' : '"production"')
   }
 }
 
-// Start up server if requested
-if (serve) {
-  ESBuild.serve({ port: 3000, servedir: 'public' }, options)
-    .then(server => {
-      console.log(`Serving dev code at ${server.host}:${server.port}`)
-
-      function handleExit (signal) { server.stop() }
-      process.on('SIGINT', handleExit)
-      process.on('SIGTERM', handleExit)
-    })
-    .catch(() => {
-      process.exit(1)
-    })
-} else {
-  // Attempt to build
-  ESBuild.build(options).catch(
-    () => {
-      process.exit(1)
+async function main () {
+  try {
+    if (serve) {
+      // Start up server if requested
+      const ctx = await ESBuild.context(options)
+      const { host, port } = await ctx.serve({ port: 3000, servedir: 'public' })
+      if (host === '0.0.0.0') {
+        console.log(`Serving dev code at http://localhost:${port}`)
+      } else {
+        console.log(`Serving dev code at ${host}:${port}`)
+      }
+    } else {
+      // Attempt to build
+      await ESBuild.build(options)
     }
-  )
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 }
+
+main()

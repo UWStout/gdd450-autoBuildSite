@@ -1,27 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Link } from '@mui/material'
 
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-
-const useStyles = makeStyles(theme => ({
-  sidebarSection: {
-    marginTop: theme.spacing(1)
-  }
-}))
+const sidebarSectionSX = {
+  marginTop: theme => theme.spacing(1)
+}
 
 export default function SidebarLinkList (props) {
-  const classes = useStyles()
-  if (props.items.length === 0) { return (<React.Fragment />) }
+  const { items, title, gameKey } = props
+  if (items.length === 0) { return null }
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        {props.title}
+      <Typography variant="h6" gutterBottom sx={sidebarSectionSX}>
+        {title}
       </Typography>
-      { props.items.map((listItem) => (
-        <Link display="block" variant="body1" target="_blank" rel="noreferrer" href={listItem.href} key={`${props.gameKey}_${listItem.title}`}>
+      { items.map((listItem) => (
+        <Link display="block" variant="body1" target="_blank" rel="noreferrer" href={listItem.href} key={`${gameKey}_${listItem.title}`}>
           {listItem.title}
         </Link>
       )) }
@@ -31,7 +26,6 @@ export default function SidebarLinkList (props) {
 
 SidebarLinkList.propTypes = {
   gameKey: PropTypes.string.isRequired,
-  children: PropTypes.node,
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired
 }

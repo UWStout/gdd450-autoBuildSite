@@ -44,7 +44,7 @@ const sidebarSections = [{
 export default function GameDevInfoPaper (props) {
   const { game, logOpenCallback } = props
 
-  // Setup state for the game deascription markdown
+  // Setup state for the game description markdown
   const gameDescriptionMD = useMarkdown(game.descriptionMarkdownURI)
 
   // Re-build the repo Links

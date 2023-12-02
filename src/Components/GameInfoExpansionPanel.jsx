@@ -1,29 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@mui/material'
+import { Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
-
-const panelDetailsSX = {
-  borderTop: '1px solid rgba(0, 0, 0, .125)'
-}
 
 export default function GameInfoExpansionPanel (props) {
   const { panelID, title, children } = props
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary
+    <Accordion>
+      <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`${panelID}-content`}
         id={`${panelID}-header`}
       >
         <Typography gutterBottom variant="h5">{title}</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails sx={panelDetailsSX}>
+      </AccordionSummary>
+      <AccordionDetails sx={{ borderTop: '1px solid rgba(0, 0, 0, .125)' }}>
         {children}
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   )
 }
 

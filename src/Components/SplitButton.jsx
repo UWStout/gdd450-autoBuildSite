@@ -1,14 +1,10 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Grow from '@material-ui/core/Grow'
-import Paper from '@material-ui/core/Paper'
-import Popper from '@material-ui/core/Popper'
-import MenuItem from '@material-ui/core/MenuItem'
-import MenuList from '@material-ui/core/MenuList'
+
+import {
+  Grid, Button, ButtonGroup, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList
+} from '@mui/material'
+
+import { ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material'
 
 const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge']
 
@@ -59,7 +55,7 @@ export default function SplitButton () {
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
-              style={{
+              sx={{
                 transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
               }}
             >

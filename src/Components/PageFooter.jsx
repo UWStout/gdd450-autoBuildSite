@@ -2,21 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Typography, Container } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import Copyright from './Copyright.jsx'
 
-const footerSX = {
-  backgroundColor: theme => theme.palette.background.paper,
-  marginTop: theme => theme.spacing(8),
-  padding: theme => theme.spacing(3, 0)
-}
-
 export default function PageFooter (props) {
   const { footerTitle, children, ...rest } = props
+  const theme = useTheme()
 
   return (
-    <footer>
-      {/* ^^ TODO: Needs spacing styling */}
+    <footer style={{
+      backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing(8),
+      padding: theme.spacing(3, 0)
+    }}
+    >
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
           {footerTitle}

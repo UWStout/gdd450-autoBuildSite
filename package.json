@@ -1,6 +1,6 @@
 {
   "name": "gdd450buildssite",
-  "version": "0.2.0",
+  "version": "2.0.0",
   "description": "A site to hold and display development builds of GDD 450 games.",
   "main": "src/main.jsx",
   "type": "module",

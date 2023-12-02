@@ -1,4 +1,4 @@
-import { PropTypes } from '@mui/material'
+import PropTypes from 'prop-types'
 
 import { RepoInfo, SocialLink, toCamelCaseString, PlatformEnum } from './GameUtils.js'
 

@@ -1,34 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { Toolbar, Link } from '@mui/material'
 
-import Toolbar from '@material-ui/core/Toolbar'
-import Link from '@material-ui/core/Link'
+const toolbarSecondarySX = {
+  justifyContent: 'space-between',
+  overflowX: 'auto'
+}
 
-const useStyles = makeStyles(theme => ({
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto'
-  },
-  toolbarLink: {
-    padding: theme.spacing(1),
-    flexShrink: 0
-  }
-}))
+const toolbarLinkSX = {
+  padding: theme => theme.spacing(1),
+  flexShrink: 0
+}
 
 export default function PageNavBar (props) {
-  const classes = useStyles()
+  const { sections } = props
   return (
-    <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-      {props.sections.map((section, i) => (
+    <Toolbar component="nav" variant="dense" sx={toolbarSecondarySX}>
+      {sections.map((section, i) => (
         <Link
           color="inherit"
           noWrap
           key={i}
           variant="body2"
           href={`#${section.replace(/[\W]/g, '')}Anchor`}
-          className={classes.toolbarLink}
+          sx={toolbarLinkSX}
         >
           {section}
         </Link>
