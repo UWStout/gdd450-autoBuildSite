@@ -1,44 +1,34 @@
 {
-  "pageTitle": "'21 - '22 GDD 45X Dev Info",
+  "pageTitle": "2023-2024 GDD/CS 45X Dev Info",
   "games": [
     {
-      "key": "witchsGarden", "courseID": "Berrier / Arcane Arcade", "title": "The Witch's Garden",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/witchsGarden450/trunk" },
+      "key": "boogieBeyond", "courseID": "11:15a / Abyssal Inc.", "title": "Boogie Beyond",
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-BoogieBeyond/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "duolBots", "courseID": "Berrier / DuolBos Dev", "title": "DuolBots", 
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/duolBots450/trunk" },
+      "key": "clubCrash", "courseID": "11:15a / Studio Boulder", "title": "Club Crash", 
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-ClubCrash/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "kingsRun", "courseID": "Loken / Kings Run Dev", "title": "The Kings Run",
-      "repo": { "type": "github", "owner": "Lautha1", "name": "TheKingsRace" },
+      "key": "rippleFrawg", "courseID": "11:15a / Skipping Stones", "title": "Ripple & Frawg: The Seasonal Song",
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-RippleAndFrawg/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "momentus", "courseID": "Loken / Momentus Dev", "title": "Momentus",
-      "repo": { "type": "github", "owner": "Thefeelz", "name": "URPMomentus" },
+      "key": "hyperPop", "courseID": "2:30p / HyperPop Team", "title": "HyperPop",
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-HyperPop/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "reactive", "courseID": "Seaver / Re:Active Dev", "title": "Re:Active",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/reActive450/trunk" },
+      "key": "landOfLights", "courseID": "2:30p / Luminous Games", "title": "Land of Lights",
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-LandOfLights/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     },
     {
-      "key": "graveRobbers", "courseID": "Seaver / Grave Robbers Dev", "title": "Grave Robbers",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/graveRobber450/trunk" },
-      "jsonPath": "websiteData/gameInfo.json"
-    },
-    {
-      "key": "dungeonHeroes", "courseID": "Tetzlaff / Dungeon Heroes Dev", "title": "Dungeon Heroes",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/dungeonHeroes450/trunk" },
-      "jsonPath": "websiteData/gameInfo.json"
-    },
-    {
-      "key": "newt", "courseID": "Tetzlaff / Newt Dev", "title": "Newt!",
-      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/newt450/trunk" },
+      "key": "sunshredder", "courseID": "2:30p / Haywire Studio", "title": "SUNSHREDDER",
+      "repo": { "type": "mscs-svn", "URI": "https://svn.uwstout.edu/svn/FA23-SUNSHREDDER/trunk" },
       "jsonPath": "websiteData/gameInfo.json"
     }
   ]

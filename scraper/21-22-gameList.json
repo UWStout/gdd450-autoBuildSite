@@ -1,0 +1,45 @@
+{
+  "pageTitle": "'21 - '22 GDD 45X Dev Info",
+  "games": [
+    {
+      "key": "witchsGarden", "courseID": "Berrier / Arcane Arcade", "title": "The Witch's Garden",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/witchsGarden450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "duolBots", "courseID": "Berrier / DuolBos Dev", "title": "DuolBots", 
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/duolBots450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "kingsRun", "courseID": "Loken / Kings Run Dev", "title": "The Kings Run",
+      "repo": { "type": "github", "owner": "Lautha1", "name": "TheKingsRace" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "momentus", "courseID": "Loken / Momentus Dev", "title": "Momentus",
+      "repo": { "type": "github", "owner": "Thefeelz", "name": "URPMomentus" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "reactive", "courseID": "Seaver / Re:Active Dev", "title": "Re:Active",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/reActive450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "graveRobbers", "courseID": "Seaver / Grave Robbers Dev", "title": "Grave Robbers",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/graveRobber450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "dungeonHeroes", "courseID": "Tetzlaff / Dungeon Heroes Dev", "title": "Dungeon Heroes",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/dungeonHeroes450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    },
+    {
+      "key": "newt", "courseID": "Tetzlaff / Newt Dev", "title": "Newt!",
+      "repo": { "type": "mscs-svn", "URI": "svn://10.26.0.27/svn/newt450/trunk" },
+      "jsonPath": "websiteData/gameInfo.json"
+    }
+  ]
+}
